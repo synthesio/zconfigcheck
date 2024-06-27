@@ -1,0 +1,31 @@
+---
+# Options for analysis running.
+run:
+  # Include test files or not.
+  # Default: true
+  tests: false
+
+issues:
+  # Maximum issues count per one linter.
+  # Set to 0 to disable.
+  # Default: 50
+  max-issues-per-linter: 0
+  # Maximum count of issues with the same text.
+  # Set to 0 to disable.
+  # Default: 3
+  max-same-issues: 0
+
+linters-settings:
+  custom:
+    zconfigcheck:
+      type: "module"
+      description: zconfig linter
+      original-url: https://gitlab.synthesio.com/synthesio/zconfigcheck
+
+output:
+  # Make issues output unique by line.
+  # Default: true
+  # Note: unique in this case means that you can have at most 1 issue per line of code.
+  # We do not want this behavior because zconfigcheck can potentially detect more than
+  # one issue with a given line and we want to see them all at once.
+  uniq-by-line: false
