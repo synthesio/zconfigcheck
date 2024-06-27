@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/synthesio/zconfigcheck"
 	"golang.org/x/tools/go/analysis/singlechecker"
-	"zconfigcheck"
 )
 
 func main() {

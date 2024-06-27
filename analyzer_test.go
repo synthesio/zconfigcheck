@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/synthesio/zconfigcheck"
 	"golang.org/x/tools/go/analysis/analysistest"
-	"zconfigcheck"
 )
 
 func TestAnalyzer(t *testing.T) {
