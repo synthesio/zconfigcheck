@@ -2,8 +2,8 @@ package golangci
 
 import (
 	"github.com/golangci/plugin-module-register/register"
+	"github.com/synthesio/zconfigcheck"
 	"golang.org/x/tools/go/analysis"
-	"zconfigcheck"
 )
 
 func init() {

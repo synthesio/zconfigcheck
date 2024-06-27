@@ -20,7 +20,7 @@ linters-settings:
     zconfigcheck:
       type: "module"
       description: zconfig linter
-      original-url: https://gitlab.synthesio.com/synthesio/zconfigcheck
+      original-url: https://github.com/synthesio/zconfigcheck
 
 output:
   # Make issues output unique by line.
