@@ -1,6 +1,6 @@
 module github.com/synthesio/zconfigcheck
 
-go 1.22
+go 1.22.3
 
 require (
 	github.com/fatih/structtag v1.2.0
