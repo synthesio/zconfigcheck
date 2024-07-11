@@ -85,7 +85,6 @@ func (c *checker) lookupInitCalls() {
 	}
 
 	graph := c.CallGraph()
-	graph.DeleteSyntheticNodes()
 	for _, node := range graph.Nodes {
 		if node.Func == nil {
 			continue
