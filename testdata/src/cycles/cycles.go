@@ -52,7 +52,7 @@ var _ = zconfig.Configure(context.Background(), &genericF{}) /* want
 type genericF2 = Generic[F] // want genericF2:"<init:none>"
 
 var _ = zconfig.Configure(context.Background(), &genericF2{}) /* want
-"configured struct contains dependency cycle: testdata/src/cycles.Generic\\[testdata/src/cycles.F\\] -> testdata/src/cycles.F -> testdata/src/cycles.Generic\\[testdata/src/cycles.F\\]"
+"configured struct contains dependency cycle: testdata/src/cycles.genericF2 -> testdata/src/cycles.F -> testdata/src/cycles.Generic\\[testdata/src/cycles.F\\] -> testdata/src/cycles.F"
 */
 
 type G struct { // want G:"<init:none>"
