@@ -10,7 +10,10 @@ import (
 	"strings"
 
 	"github.com/fatih/structtag"
+	"golang.org/x/exp/typeparams"
 )
+
+var ctxt = typeparams.NewContext()
 
 const (
 	keyTag         = "key"
@@ -109,6 +112,28 @@ func (c *checker) checkStructs() {
 			issues.Report(c.Pass)
 		}
 	})
+
+	// This is necessary to catch generic type instantiations.
+	// Generic types have a generic TypeSpec which does not have defined type params.
+	// Because of that, the analysis done on those structs is not complete.
+	//
+	// Furthermore, the generic type does not match the concrete type obtained following the instantiation.
+	// This means that when we find calls to Configure using instantiated generic types as the argument, we do not
+	// have any available analysis information.
+	//
+	// Running the analysis on all generic type instances avoids these issues.
+	for _, instance := range c.Pass.TypesInfo.Instances {
+		if _, ok := c.PkgStructs[instance.Type]; ok {
+			// Avoid running the analysis more than once if the same generic type is instantiated more than once
+			// using the same type params
+			continue
+		}
+
+		c.checkStruct(instance.Type, nil)
+		// We cannot directly report any of the returned issues because they would be reported on the generic type
+		// fields, leading to confusion and potential issue duplication.
+		// These issues will be reported only at the site of the call to Configure.
+	}
 }
 
 // checkStruct returns any detected issues with the given Type.
@@ -573,22 +598,17 @@ func (s StructField) String() string {
 // CompatibleWith returns true if the two struct fields have compatible types or constraints.
 // This means that a unique source can be assigned to both target fields.
 // Example:
-// - field a is of type int
-// - field b is of type T[constraints.Integer]
+// - field a is of type `int`
+// - field b is of type `T constraints.Integer`
 // They are compatible, because they can both be assigned an int type
 func (s StructField) CompatibleWith(f StructField) bool {
-	return types.AssignableTo(s.typeOrConstraint, f.typeOrConstraint) ||
-		types.AssignableTo(f.typeOrConstraint, s.typeOrConstraint)
+	return typeparams.GenericAssignableTo(ctxt, s.typeOrConstraint, f.typeOrConstraint) ||
+		typeparams.GenericAssignableTo(ctxt, f.typeOrConstraint, s.typeOrConstraint)
 }
 
 // AssignableTo returns true if the method receiver can be assigned to the dest argument.
-// If the method receiver is a generic type, then we consider it assignable to avoid
-// raising potentially false issues.
 func (s StructField) AssignableTo(dest StructField) bool {
-	if s.IsGeneric && !dest.IsGeneric {
-		return true
-	}
-	return types.AssignableTo(s.typeOrConstraint, dest.typeOrConstraint)
+	return typeparams.GenericAssignableTo(ctxt, s.typeOrConstraint, dest.typeOrConstraint)
 }
 
 func (s StructField) IsStruct() bool {
