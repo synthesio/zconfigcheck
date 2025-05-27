@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Fixed
 - issues reported by golangci-lint
+- issues that appeared with golang.org/x/tools v0.25.0 in static.CallGraph
 
 ### Changed
 - improved CI integration

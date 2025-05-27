@@ -9,7 +9,8 @@ import (
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
 	"golang.org/x/tools/go/callgraph"
-	"golang.org/x/tools/go/callgraph/static"
+
+	"github.com/synthesio/zconfigcheck/internal/callgraph/static"
 )
 
 const (
