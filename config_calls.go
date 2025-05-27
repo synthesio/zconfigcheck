@@ -166,7 +166,7 @@ func (c *checker) detectCalls() {
 				// Scan the argument used for the call to check whether it has the right type and report
 				// any eventual issues.
 				for _, issue := range c.getArgIssues(arg) {
-					c.Pass.Reportf(edge.Site.Common().Pos(), issue)
+					c.Pass.Report(analysis.Diagnostic{Pos: edge.Site.Common().Pos(), Message: issue})
 				}
 			}
 		}
