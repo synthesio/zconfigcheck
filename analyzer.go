@@ -9,7 +9,8 @@ import (
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
 	"golang.org/x/tools/go/callgraph"
-	"golang.org/x/tools/go/callgraph/static"
+	"golang.org/x/tools/go/ssa"
+	"golang.org/x/tools/go/ssa/ssautil"
 )
 
 const (
@@ -60,7 +61,23 @@ func (c *checker) CallGraph() *callgraph.Graph {
 		return c.callGraph
 	}
 
-	c.callGraph = static.CallGraph(c.SSA.Pkg.Prog)
+	cg := callgraph.New(nil)
+	// the lower precision means so many edges are allocated)!
+	for f := range ssautil.AllFunctions(c.SSA.Pkg.Prog) {
+		fnode := cg.CreateNode(f)
+		for _, b := range f.Blocks {
+			for _, instr := range b.Instrs {
+				if site, ok := instr.(ssa.CallInstruction); ok {
+					if g := site.Common().StaticCallee(); g != nil {
+						gnode := cg.CreateNode(g)
+						callgraph.AddEdge(fnode, site, gnode)
+					}
+				}
+			}
+		}
+	}
+
+	c.callGraph = cg
 	return c.callGraph
 }
 

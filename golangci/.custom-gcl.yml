@@ -1,4 +1,4 @@
-version: v1.59.1
+version: v2.1.6
 plugins:
   - module: 'github.com/synthesio/zconfigcheck'
     import: 'github.com/synthesio/zconfigcheck/golangci'
