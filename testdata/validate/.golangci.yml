@@ -1,0 +1,15 @@
+---
+output:
+  show-stats: false
+
+linters-settings:
+  custom:
+    zconfigcheck:
+      type: "module"
+      description: Local zconfig linter
+
+linters:
+  disable-all: true
+  enable:
+    - zconfigcheck
+

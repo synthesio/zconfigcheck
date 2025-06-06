@@ -1,0 +1,5 @@
+# README
+
+This is a basic package that uses zconfig, there is an error in its usage.
+
+zconfigcheck should be able to find it when launched through golangci-lint custom module
