@@ -90,7 +90,7 @@ func (i Issues) Merge(o Issues) Issues {
 func (i Issues) Report(pass *analysis.Pass) {
 	for pos, issues := range i {
 		for _, issue := range issues {
-			pass.Reportf(pos, issue)
+			pass.Report(analysis.Diagnostic{Pos: pos, Message: issue})
 		}
 	}
 }
