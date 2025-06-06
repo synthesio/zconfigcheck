@@ -1,0 +1,3 @@
+# golangci-lint integration testing
+
+The files in this folder allow us to validate that golangci-lint is able to use zconfigcheck module.

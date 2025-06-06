@@ -3,6 +3,7 @@ updates:
 - package-ecosystem: gomod
   directories:
     - "/"
+    - "/testdata/validate/foo"
   schedule:
     interval: "monthly"
 - package-ecosystem: "github-actions"

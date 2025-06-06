@@ -1,0 +1,7 @@
+---
+version: GOLANGCI_VERSION # This will be replaced by the actual version in the build script
+plugins:
+  - module: 'github.com/synthesio/zconfigcheck'
+    import: 'github.com/synthesio/zconfigcheck/golangci'
+    # we are using the zconfigcheck version available locally
+    path: ../..

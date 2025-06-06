@@ -1,0 +1,5 @@
+# The following files are created by the integration tests.
+# They are not part of the source code and should not be committed.
+custom-gcl
+golangci-lint
+.custom-gcl.yml
