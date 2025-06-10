@@ -14,8 +14,9 @@ jobs:
     strategy:
       matrix:
         os: [ "ubuntu-latest", "macos-latest" ]
-        go_version : [ "1.23"]
-        golangci_version: [ "v1.64.8" ]
+        go_version : [ "oldstable", "stable" ]
+        # check against a known version and the latest version of golangci-lint
+        golangci_version: [ "v2.1.6", "latest" ]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4

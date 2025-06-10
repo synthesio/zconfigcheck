@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - enabled dependabot
 - zconfigcheck integration is now validated by GitHub Actions
+- golangci-lint v2 to GitHub Actions
 
 ## 0.2.0 - 2024-09-05
 ### Changed
