@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 0.3.0 - 2025-0610
+## 0.3.0 - 2025-06-10
 ### Fixed
 - issues reported by golangci-lint
 - issues that appeared with golang.org/x/tools v0.25.0 in static.CallGraph
