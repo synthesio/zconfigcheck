@@ -18,6 +18,7 @@ jobs:
     strategy:
       matrix:
         os: [ "ubuntu-latest", "macos-latest" ]
+        go_version: [ "oldstable", "stable" ]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
@@ -25,13 +26,27 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v5
       with:
-        # use the version of Go specified in go.mod
-        go-version-file: go.mod
+        go-version: ${{ matrix.go_version }}
+
+    - name: Test
+      run: go test -v -race ./...
+
+  lint:
+    strategy:
+      matrix:
+        os: [ "ubuntu-latest", "macos-latest" ]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: "stable"
 
     - name: Linting
       uses: golangci/golangci-lint-action@v8
       with:
         version: latest
 
-    - name: Test
-      run: go test -v -race ./...
