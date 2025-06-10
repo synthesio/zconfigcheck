@@ -8,7 +8,7 @@ if [ ! "$#" -eq 1 ]; then
 	echo
 	echo "Examples:"
 	echo "$0 latest # this would fetch the latest golangci-lint version"
-	echo "$0 v1.64.8"
+	echo "$0 v2.1.6"
 	exit 1
 fi
 
