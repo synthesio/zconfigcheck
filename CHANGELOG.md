@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 0.3.0 - 2025-0610
 ### Fixed
 - issues reported by golangci-lint
 - issues that appeared with golang.org/x/tools v0.25.0 in static.CallGraph
@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - golangci-lint v2 is now used
 - improved CI integration
+- Use `golang.org/x/tools` v0.34.0
 
 ### Added
 - enabled dependabot
