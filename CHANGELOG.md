@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - issues that appeared with golang.org/x/tools v0.25.0 in static.CallGraph
 
 ### Changed
+- golangci-lint v2 is now used
 - improved CI integration
 
 ### Added
