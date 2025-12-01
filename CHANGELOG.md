@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4.0 - 2025-09-02
+### Changed
+- Target go 1.25.0 as minimum version
+- dependencies updated
+
 ## 0.3.1 - 2025-06-10
 ### Updated
 - Use `github.com/synthesio/zconfig` v2.2.0
